@@ -1,0 +1,11 @@
+{
+    "name": "caris",
+    "version": "0.0.0",
+    "author": "",
+    "dependencies": {
+        "express": "latest",
+        "instagram-node": "latest",
+        "mongodb": "latest"
+    }
+}
+
