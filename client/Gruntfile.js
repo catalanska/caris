@@ -16,7 +16,7 @@ module.exports = function (grunt) {
         copy: {
             html_files : {
                 expand: true,
-                src: ['*.html'],
+                src: ['*.html', 'views/*'],
                 dest: 'dist/'
             },
             images : {
