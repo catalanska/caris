@@ -117,7 +117,7 @@ app.factory('Instagram', ['$http',
     function($http) {
         return {
             'get': function() {
-                var request = '/ig_images';
+                var request = '/api/ig_images';
                 return $http.get(request);
             }
         };
