@@ -1,4 +1,4 @@
-angular.module('templates-main', ['../views/history.html', '../views/home.html', '../views/home_old.html', '../views/hotels.html', '../views/photos.html', '../views/place.html']);
+angular.module('templates-main', ['../views/history.html', '../views/home.html', '../views/hotels.html', '../views/photos.html', '../views/place.html']);
 
 angular.module("../views/history.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../views/history.html",
@@ -456,29 +456,6 @@ angular.module("../views/home.html", []).run(["$templateCache", function($templa
     "");
 }]);
 
-angular.module("../views/home_old.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../views/home_old.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-12 text-center\">\n" +
-    "        <h1>Ester <img src=\"../images/final/rings.svg\"  width=\"45px\" height=\"32px\">  Javi</h1>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-6 col-md-offset-3 text-center\">\n" +
-    "            <img src=\"../images/final/bike_frame.svg\" alt=\"Fotos\" id=\"bike_foto\" class=\"tossing\">\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-12 text-center\">\n" +
-    "        <img src=\"../images/final/date.svg\" alt=\"Fecha\" id=\"date_banner\">\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "");
-}]);
-
 angular.module("../views/hotels.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../views/hotels.html",
     "<div class=\"row\">\n" +
@@ -502,7 +479,7 @@ angular.module("../views/photos.html", []).run(["$templateCache", function($temp
     "        </p>\n" +
     "\n" +
     "        <div style=\"margin:0 auto;width:{{carousel.width}}\">\n" +
-    "            <carousel interval=\"carousel.interval\">\n" +
+    "            <carousel disable-ng-animate interval=\"carousel.interval\">\n" +
     "                <slide ng-repeat=\"group in carousel.slidesGroups\" active=\"slide.active\" style=\"clear: both;\">\n" +
     "                    <div  style=\"float:left\" ng-repeat=\"slide in group\">\n" +
     "                        <img ng-src=\"{{ slide.images.low_resolution.url }}\" src=\"\" alt=\"\">\n" +
@@ -655,3 +632,14 @@ app.factory('Instagram', ['$http',
         };
     }
 ]);
+
+app.directive('disableNgAnimate', ['$animate', function($animate) {
+    return {
+        restrict: 'A',
+        link: function(scope, element) {
+            $animate.enabled(false, element);
+        }
+    };
+}]);
+
+

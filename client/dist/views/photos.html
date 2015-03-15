@@ -6,7 +6,7 @@
         </p>
 
         <div style="margin:0 auto;width:{{carousel.width}}">
-            <carousel interval="carousel.interval">
+            <carousel disable-ng-animate interval="carousel.interval">
                 <slide ng-repeat="group in carousel.slidesGroups" active="slide.active" style="clear: both;">
                     <div  style="float:left" ng-repeat="slide in group">
                         <img ng-src="{{ slide.images.low_resolution.url }}" src="" alt="">
