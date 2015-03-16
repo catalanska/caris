@@ -4,6 +4,7 @@
     "author": "",
     "dependencies": {
         "express": "latest",
+        "body-parser": "latest",
         "instagram-node": "latest",
         "mongodb": "latest"
     }
