@@ -67,9 +67,9 @@ var findMoreTaggedPhotos = function(err, medias, pagination, remaining, limit){
     for(idx in medias){
         insertPhotoInDB(medias[idx]);
     }
-    if(pagination && pagination.next) {
+    if(pagination) {
         updateConfig(pagination.min_tag_id, function(){
-            pagination.next(findMoreTaggedPhotos);
+           if(pagination.next) pagination.next(findMoreTaggedPhotos);
         });
     }
 };
@@ -83,7 +83,7 @@ var insertPhotoInDB = function(data){
 var initConfig = function(tag, callback){
     configCollection.insert({'tag': tag}, function(err, result) {
         if(err) console.log("Error while insert "+err);
-        callback();
+        callback(result);
     });
 };
 
