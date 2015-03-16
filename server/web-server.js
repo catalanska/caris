@@ -16,11 +16,11 @@ app.get('/taggedPhotos', function (req, res) {
     igCollection.find({}).limit(30).toArray(function(err, docs) {
         res.json(docs);
     });
-
 });
 
 // To receive updates from IG
 app.post('/taggedPhotos', function (req, res) {
+    console.log("New tagged Photos");
     console.log(req.body);
     var updates = req.body;
     for(idx in updates){
@@ -34,23 +34,22 @@ app.post('/taggedPhotos', function (req, res) {
 
 // To confirm subscription
 app.get('/taggedPhotoSubscription', function (req, res) {
+    console.log("Confirm tag subscription");
     console.log(req.query);
-    res.json(req.query['hub.challenge']);
+    res.send(req.query['hub.challenge']);
 });
 
 // First import and subscription creation
 app.post('/taggedPhotoSubscription', function (req, res) {
-    console.log(req.body);
     var tag = req.body.tag;
     // First import
     getTaggedPhotos(tag);
     // Create subscription
-    igClient.add_tag_subscription(tag, 'http://52.11.10.218/taggedPhotoSubscription', [], function(err, result, remaining, limit){
+    igClient.add_tag_subscription(tag, 'http://52.11.10.218/api/taggedPhotoSubscription', [], function(err, result, remaining, limit){
         if(err) console.log(err);
     });
     res.send('Hello World!');
 });
-
 
 
 var getTaggedPhotos = function(tag){
