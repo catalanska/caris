@@ -5,7 +5,10 @@ ig.use({ client_id: 'ead1d24e2cd3494bb254419193ee411a', client_secret: 'cd47fa57
 
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 
+
+app.use(bodyParser.json()); // for parsing application/json
 
 
 var server = app.listen(3000, function () {
