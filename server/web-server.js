@@ -95,7 +95,7 @@ var getConfig = function(callback){
 
 var updateConfig = function(minTagId, callback){
     getConfig(function(config){
-        config.minTagId = minTagId;
+        config["minTagId"] = minTagId;
         configCollection.update({_id:config._id}, config, function(err, config){
             callback();
         });
