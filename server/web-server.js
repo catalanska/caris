@@ -18,8 +18,16 @@ app.get('/taggedPhotos', function (req, res) {
     });
 });
 
+
+// To confirm subscription
+app.get('/taggedPhotoSubscription', function (req, res) {
+    console.log("Confirm tag subscription");
+    console.log(req.query);
+    res.send(req.query['hub.challenge']);
+});
+
 // To receive updates from IG
-app.post('/taggedPhotos', function (req, res) {
+app.post('/taggedPhotoSubscription', function (req, res) {
     console.log("New tagged Photos");
     console.log(req.body);
     var updates = req.body;
@@ -32,15 +40,9 @@ app.post('/taggedPhotos', function (req, res) {
     res.json('OK');
 });
 
-// To confirm subscription
-app.get('/taggedPhotoSubscription', function (req, res) {
-    console.log("Confirm tag subscription");
-    console.log(req.query);
-    res.send(req.query['hub.challenge']);
-});
-
 // First import and subscription creation
-app.post('/taggedPhotoSubscription', function (req, res) {
+// curl -H "Content-Type: application/json" -d '{"tag":"prueba012"}' http://localhost:3000/createTaggedPhotoSubscription
+app.post('/createTaggedPhotoSubscription', function (req, res) {
     var tag = req.body.tag;
     // First import
     getTaggedPhotos(tag);
@@ -60,7 +62,7 @@ var findMoreTaggedPhotos = function(err, medias, pagination, remaining, limit){
     for(idx in medias){
         insertInDB(medias[idx]);
     }
-    if(pagination.next) {
+    if(pagination && pagination.next) {
         pagination.next(findMoreTaggedPhotos);
     }
 };
