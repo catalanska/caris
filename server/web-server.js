@@ -3,11 +3,12 @@ var global = require('./init');
 var app = global.app;
 var igClient = global.igClient;
 
-var mongodb, igCollection;
+var mongodb, igCollection, configCollection;
 
 global.mongoClient.connect(global.mongoUrl, function(err, db) {
     mongodb = db;
     igCollection = db.collection('instagram');
+    configCollection = db.collection('config');
     console.log("Connected correctly to server");
 });
 
@@ -30,22 +31,26 @@ app.get('/taggedPhotoSubscription', function (req, res) {
 app.post('/taggedPhotoSubscription', function (req, res) {
     console.log("New tagged Photos");
     console.log(req.body);
-    var updates = req.body;
-    for(idx in updates){
-        var update = updates[idx];
-        igClient.media(update.object_id, function(err, media, remaining, limit) {
-            insertInDB(media.data);
-        });
-    }
+    getConfig(function(config){
+        getTaggedPhotos(config.tag, config.minTagId);
+    });
     res.json('OK');
 });
 
 // First import and subscription creation
 // curl -H "Content-Type: application/json" -d '{"tag":"prueba012"}' http://localhost:3000/createTaggedPhotoSubscription
-app.post('/createTaggedPhotoSubscription', function (req, res) {
+app.post('/importTaggedPhotos', function (req, res) {
     var tag = req.body.tag;
     // First import
-    getTaggedPhotos(tag);
+    initConfig(tag,function(){
+        getTaggedPhotos(tag, null);
+    });
+
+    res.send('Hello World!');
+});
+
+app.post('/createTaggedPhotoSubscription', function (req, res) {
+    var tag = req.body.tag;
     // Create subscription
     igClient.add_tag_subscription(tag, 'http://52.11.10.218/api/taggedPhotoSubscription', [], function(err, result, remaining, limit){
         if(err) console.log(err);
@@ -54,23 +59,44 @@ app.post('/createTaggedPhotoSubscription', function (req, res) {
 });
 
 
-var getTaggedPhotos = function(tag){
-    igClient.tag_media_recent(tag, findMoreTaggedPhotos);
+var getTaggedPhotos = function(tag, minTagId){
+    igClient.tag_media_recent(tag, [minTagId], findMoreTaggedPhotos);
 };
 
 var findMoreTaggedPhotos = function(err, medias, pagination, remaining, limit){
     for(idx in medias){
-        insertInDB(medias[idx]);
+        insertPhotoInDB(medias[idx]);
     }
     if(pagination && pagination.next) {
-        pagination.next(findMoreTaggedPhotos);
+        updateConfig(pagination.min_tag_id, function(){
+            pagination.next(findMoreTaggedPhotos);
+        });
     }
 };
 
-var insertInDB = function(data){
-    igCollection.insert(
-        data
-        , function(err, result) {
+var insertPhotoInDB = function(data){
+    igCollection.insert(data, function(err, result) {
             if(err) console.log("Error while insert "+err);
+    });
+};
+
+var initConfig = function(tag, callback){
+    configCollection.insert({'tag': tag}, function(err, result) {
+        if(err) console.log("Error while insert "+err);
+        callback();
+    });
+};
+
+var getConfig = function(callback){
+    configCollection.find().limit(1).toArray(function(err, config) {
+      callback(config[0]);
+    });
+};
+
+var updateConfig = function(minTagId, callback){
+    getConfig(function(config){
+        configCollection.update({_id:config._id}, config, function(err, config){
+            callback();
         });
+    });
 };
