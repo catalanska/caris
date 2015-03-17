@@ -3,12 +3,12 @@ var global = require('./init');
 var app = global.app;
 var igClient = global.igClient;
 
-var mongodb, igCollection, configCollection;
+var mongodb, igCollection, subscriptionsCollection;
 
 global.mongoClient.connect(global.mongoUrl, function(err, db) {
     mongodb = db;
     igCollection = db.collection('instagram');
-    configCollection = db.collection('config');
+    subscriptionsCollection = db.collection('subscriptions');
     console.log("Connected correctly to server");
 });
 
@@ -19,57 +19,51 @@ app.get('/taggedPhotos', function (req, res) {
     });
 });
 
-
 // To confirm subscription
 app.get('/taggedPhotoSubscription', function (req, res) {
-    console.log("Confirm tag subscription");
-    console.log(req.query);
     res.send(req.query['hub.challenge']);
 });
 
 // To receive updates from IG
 app.post('/taggedPhotoSubscription', function (req, res) {
-    console.log("New tagged Photos");
-    console.log(req.body);
-    getConfig(function(config){
-        getTaggedPhotos(config.tag, config.minTagId);
-    });
+    var subscriptions = req.body;
+    for(idx in subscriptions){
+        getSubscription(subscriptions[idx].object_id, function(subscription){
+            getNewTaggedPhotos(subscription);
+        });
+    }
     res.json('OK');
 });
 
-// First import and subscription creation
-// curl -H "Content-Type: application/json" -d '{"tag":"prueba012"}' http://localhost:3000/createTaggedPhotoSubscription
-app.post('/importTaggedPhotos', function (req, res) {
-    var tag = req.body.tag;
-    // First import
-    initConfig(tag,function(){
-        getTaggedPhotos(tag, null);
-    });
-
-    res.send('Hello World!');
-});
-
+// Subscription creation & first import
+// curl -H "Content-Type: application/json" -d '{"tag":"esteryjavi"}' http://localhost:3000/createTaggedPhotoSubscription
 app.post('/createTaggedPhotoSubscription', function (req, res) {
     var tag = req.body.tag;
     // Create subscription
     igClient.add_tag_subscription(tag, 'http://52.11.10.218/api/taggedPhotoSubscription', [], function(err, result, remaining, limit){
         if(err) console.log(err);
+        initSubscription(tag,function(subscription){
+            console.log(subscription);
+            getNewTaggedPhotos(subscription);
+        });
     });
-    res.send('Hello World!');
+    res.send('Subscription Created');
 });
 
 
-var getTaggedPhotos = function(tag, minTagId){
-    igClient.tag_media_recent(tag, {min_tag_id: minTagId}, findMoreTaggedPhotos);
+var getNewTaggedPhotos = function(subscription) {
+    igClient.tag_media_recent(subscription.tag, {min_tag_id: subscription.minTagId}, function (err, medias, pagination, remaining, limit) {
+        storeNewTaggedPhotos(subscription, medias, pagination);
+    });
 };
 
-var findMoreTaggedPhotos = function(err, medias, pagination, remaining, limit){
-    for(idx in medias){
-        insertPhotoInDB(medias[idx]);
+var storeNewTaggedPhotos = function(subscription, photos, pagination){
+    for (idx in photos) {
+        insertPhotoInDB(photos[idx]);
     }
-    if(pagination) {
-        updateConfig(pagination.min_tag_id, function(){
-           if(pagination.next) pagination.next(findMoreTaggedPhotos);
+    if (pagination) {
+        updateSubscription(subscription, pagination.min_tag_id, function() {
+            if (pagination.next) pagination.next(function (err, photos, pagination, remaining, limit){ storeNewTaggedPhotos(subscription, photos, pagination) });
         });
     }
 };
@@ -80,24 +74,22 @@ var insertPhotoInDB = function(data){
     });
 };
 
-var initConfig = function(tag, callback){
-    configCollection.insert({'tag': tag}, function(err, result) {
+var initSubscription = function(tag, callback){
+    subscriptionsCollection.insert({'tag': tag}, function(err, result) {
         if(err) console.log("Error while insert "+err);
-        callback(result);
+        callback(result[0]);
     });
 };
 
-var getConfig = function(callback){
-    configCollection.find().limit(1).toArray(function(err, config) {
+var getSubscription = function(tag, callback){
+    subscriptionsCollection.find({'tag': tag}).limit(1).toArray(function(err, config) {
       callback(config[0]);
     });
 };
 
-var updateConfig = function(minTagId, callback){
-    getConfig(function(config){
-        config["minTagId"] = minTagId;
-        configCollection.update({_id:config._id}, config, function(err, config){
-            callback();
-        });
+var updateSubscription = function(subscription, minTagId, callback){
+    subscription.minTagId = minTagId;
+    subscriptionsCollection.update({_id:subscription._id}, subscription, function(err, config){
+        callback();
     });
 };
