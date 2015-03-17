@@ -14,7 +14,7 @@ global.mongoClient.connect(global.mongoUrl, function(err, db) {
 
 // To retieve list and return to client
 app.get('/taggedPhotos', function (req, res) {
-    igCollection.find({}).limit(30).toArray(function(err, docs) {
+    igCollection.find({}).sort({created_time : -1}).toArray(function(err, docs) {
         res.json(docs);
     });
 });
