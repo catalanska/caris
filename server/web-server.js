@@ -60,7 +60,7 @@ app.post('/createTaggedPhotoSubscription', function (req, res) {
 
 
 var getTaggedPhotos = function(tag, minTagId){
-    igClient.tag_media_recent(tag, [minTagId], findMoreTaggedPhotos);
+    igClient.tag_media_recent(tag, {min_tag_id: minTagId}, findMoreTaggedPhotos);
 };
 
 var findMoreTaggedPhotos = function(err, medias, pagination, remaining, limit){
