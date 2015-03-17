@@ -41,13 +41,13 @@ app.post('/createTaggedPhotoSubscription', function (req, res) {
     var tag = req.body.tag;
     // Create subscription
     igClient.add_tag_subscription(tag, 'http://52.11.10.218/api/taggedPhotoSubscription', [], function(err, result, remaining, limit){
-        if(err) console.log(err);
+        if(err) console.log("Error creting subscription: "+err);
         initSubscription(tag,function(subscription){
             console.log(subscription);
             getNewTaggedPhotos(subscription);
         });
     });
-    res.send('Subscription Created');
+    res.json('OK');
 });
 
 
@@ -76,7 +76,7 @@ var insertPhotoInDB = function(data){
 
 var initSubscription = function(tag, callback){
     subscriptionsCollection.insert({'tag': tag}, function(err, result) {
-        if(err) console.log("Error while insert "+err);
+        if(err) console.log(err);
         callback(result[0]);
     });
 };
@@ -89,7 +89,9 @@ var getSubscription = function(tag, callback){
 
 var updateSubscription = function(subscription, minTagId, callback){
     subscription.minTagId = minTagId;
+    console.log(subscription);
     subscriptionsCollection.update({_id:subscription._id}, subscription, function(err, config){
+        if(err) console.log(err);
         callback();
     });
 };
