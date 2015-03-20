@@ -37913,12 +37913,12 @@ var app = angular.module('ABC', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'temp
 app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     //
     // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/inicio");
+    $urlRouterProvider.otherwise("/");
     //
     // Now set up the states
     $stateProvider
         .state('home', {
-            url: "/inicio",
+            url: "/",
             templateUrl: "views/home.html"
         })
         .state('place', {
