@@ -37837,13 +37837,13 @@ angular.module("../views/home.html", []).run(["$templateCache", function($templa
     "\n" +
     "<div class=\"row\" id=\"frame-row\">\n" +
     "    <div class=\"col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4\">\n" +
-    "            <img src=\"images/final/frame_camping.svg\" alt=\"Fotos\" id=\"frame_camping\">\n" +
+    "            <img src=\"images/final/frame_camping.png\" alt=\"Fotos\" id=\"frame_camping\">\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4\">\n" +
-    "        <img src=\"images/final/date.svg\" alt=\"Fecha\" id=\"date_banner\">\n" +
+    "        <img src=\"images/final/date.png\" alt=\"Fecha\" id=\"date_banner\">\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
