@@ -10,7 +10,7 @@
 
     <title>Ester y Javi | 27 Junio 2015</title>
 
-    <link rel="stylesheet" href="css/f77b59be.app.min.css"/>
+    <link rel="stylesheet" href="css/8d0a9ca1.app.min.css"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -18,8 +18,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="js/62d27a7e.angbulk.js"></script>
-    <script src="js/14ee3ea6.appbulk.js"></script>
+    <script src="js/38d8f402.appbulk.js"></script>
 </head>
 
 <body ng-app="ABC">
@@ -41,11 +40,11 @@
             </div>
             <div id="navbar-header-list" collapse="isNavCollapsed" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav text-center">
-                    <li><a ui-sref="home">Inicio</a></li>
-                    <li><a ui-sref="place">Cómo LLegar</a></li>
-                    <li><a ui-sref="hotels">Dónde Dormir</a></li>
-                    <li><a ui-sref="photos">Fotos</a></li>
-                    <li><a ui-sref="history">Érase una vez ...</a></li>
+                    <li ui-sref-active="active"><a ui-sref="home">Inicio</a></li>
+                    <li ui-sref-active="active"><a ui-sref="place">Cómo LLegar</a></li>
+                    <li ui-sref-active="active"><a ui-sref="hotels">Dónde Dormir</a></li>
+                    <li ui-sref-active="active"><a ui-sref="photos">Fotos</a></li>
+                    <li ui-sref-active="active" class="last"><a ui-sref="history">Érase una vez ...</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -65,15 +64,16 @@
                 <div class="container-fluid">
 
                         <ul class="nav navbar-nav">
-                            <li><a ui-sref="home">Inicio</a></li>
-                            <li><a ui-sref="place">Cómo LLegar</a></li>
-                            <li><a ui-sref="hotels">Dónde Dormir</a></li>
-                            <li><a ui-sref="photos">Fotos</a></li>
-                            <li><a ui-sref="history">Érase una vez ...</a></li>
+                            <li><a ui-sref="home" ><img src="images/final/je.png" width="40px"></a></li>
+                            <li ui-sref-active="active"><a ui-sref="place">Cómo LLegar</a></li>
+                            <li ui-sref-active="active"><a ui-sref="hotels">Dónde Dormir</a></li>
+                            <li ui-sref-active="active"><a ui-sref="photos">Fotos</a></li>
+                            <li ui-sref-active="active"><a ui-sref="history">Érase una vez ...</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li><a ui-sref="photos"><img src="images/final/instagram.svg" width="45px" height="32px"> &nbsp;<span class="girls">#esteryjavi</span></a> </li>
+
                         </ul>
 
                 </div>
