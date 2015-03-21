@@ -16,7 +16,7 @@ module.exports = function (grunt) {
         copy: {
             html_files : {
                 expand: true,
-                src: ['*.html', 'views/*'],
+                src: ['*.html'],
                 dest: 'dist/'
             },
             images : {
@@ -69,6 +69,9 @@ module.exports = function (grunt) {
         },
 
         html2js: {
+            options: {
+                base: '../client/'
+            },
             main: {
               src: ['views/*.html'],
               dest: 'js/views.js'

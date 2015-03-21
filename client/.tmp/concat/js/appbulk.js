@@ -37384,13 +37384,13 @@ angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCac
     "");
 }]);
 
-angular.module('templates-main', ['../views/history.html', '../views/home.html', '../views/hotels.html', '../views/photos.html', '../views/place.html']);
+angular.module('templates-main', ['views/history.html', 'views/home.html', 'views/hotels.html', 'views/photos.html', 'views/place.html']);
 
-angular.module("../views/history.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../views/history.html",
+angular.module("views/history.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/history.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-6 col-md-offset-3\">\n" +
-    "        <h2 class=\"text-center\">Un poquito de nuestra história</h2>\n" +
+    "        <h2 class=\"text-center\">Un poquito de nuestra historia</h2>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -37827,8 +37827,8 @@ angular.module("../views/history.html", []).run(["$templateCache", function($tem
     "");
 }]);
 
-angular.module("../views/home.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../views/home.html",
+angular.module("views/home.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/home.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4\">\n" +
     "        <img src=\"images/final/j+e.png\" id=\"logo-full\">\n" +
@@ -37850,11 +37850,11 @@ angular.module("../views/home.html", []).run(["$templateCache", function($templa
     "");
 }]);
 
-angular.module("../views/hotels.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../views/hotels.html",
+angular.module("views/hotels.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/hotels.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-6 col-md-offset-3\">\n" +
-    "        <h2 class=\"text-center\">¿Dónde dormir? &nbsp;&nbsp;&nbsp;<img src=\"images/final/dont_disturb.svg\" alt=\"Alojamiento\" width=\"40px\"></h2>\n" +
+    "        <h2 class=\"text-center\">¿Dónde dormir? &nbsp;&nbsp;&nbsp;<img id=\"sleep\" src=\"images/final/dont_disturb.svg\" alt=\"Alojamiento\"></h2>\n" +
     "        <h3>Casa Soulere</h3>\n" +
     "        <p>Mansión de más de 400 años de antigüedad en Les Voltes de Riudecols. 22 plazas reservadas para los invitados a la boda. El precio es de 46€ por persona e incluye la opción de quedarse el Viernes por la noche, piscina y barbacoa.</p>\n" +
     "        <p><a href=\"http://www.homeaway.es/p1003467\" target=\"_blank\" class =\"girls\">http://www.homeaway.es/p1003467</a></p>\n" +
@@ -37868,14 +37868,16 @@ angular.module("../views/hotels.html", []).run(["$templateCache", function($temp
     "");
 }]);
 
-angular.module("../views/photos.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../views/photos.html",
+angular.module("views/photos.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/photos.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-12 text-center\">\n" +
-    "        <h2>¡Compartid con nosotros las fotos de esta aventura!</h2>\n" +
+    "        <h2>¡Compartid las fotos de esta aventura!</h2>\n" +
     "        <p class=\"main-content\">\n" +
-    "            <a><img src=\"images/final/instagram.svg\" width=\"50px\"> &nbsp;<span class=\"girls big\">#esteryjavi</span></a>\n" +
+    "            <h3>Subidlas a Instagram con el hashtag</h3><br>\n" +
+    "            <a><img id=\"instagram-icon\" src=\"images/final/instagram.svg\"> &nbsp;<span class=\"girls big\">#esteryjavi</span></a>\n" +
     "        </p>\n" +
+    "        <p><span id=\"icon-instagram-down\" class=\"glyphicon glyphicon-chevron-down\"></span></p>\n" +
     "\n" +
     "        <div style=\"margin:0 auto;width:{{carousel.width}}\">\n" +
     "            <carousel disable-ng-animate interval=\"carousel.interval\">\n" +
@@ -37891,14 +37893,14 @@ angular.module("../views/photos.html", []).run(["$templateCache", function($temp
     "");
 }]);
 
-angular.module("../views/place.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../views/place.html",
+angular.module("views/place.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/place.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-6 col-md-offset-3\">\n" +
-    "        <h2 class=\"text-center\">¿Cómo llegar? &nbsp;<img src=\"images/final/sign.svg\" alt=\"Cómo llegar\" width=\"90px\"></h2>\n" +
-    "        <h3><img src=\"images/final/bus.svg\" alt=\"Cómo llegar\" width=\"70px\">&nbsp;&nbsp;En Autocar</h3>\n" +
+    "        <h2 class=\"text-center\">¿Cómo llegar? &nbsp;<img id=\"sign\" src=\"images/final/sign.svg\" alt=\"Cómo llegar\"></h2>\n" +
+    "        <h3><img id=\"bus\" src=\"images/final/bus.svg\" alt=\"Cómo llegar\">&nbsp;&nbsp;En Autocar</h3>\n" +
     "        <p>Un autocar saldrá desde Viladecans y Gavà. Más información en breve.</p>\n" +
-    "        <h3>En coche&nbsp;&nbsp;<img src=\"images/final/car.svg\" alt=\"Cómo llegar\" width=\"70px\"></h3>\n" +
+    "        <h3>En coche&nbsp;&nbsp;<img id=\"car\" src=\"images/final/car.svg\" alt=\"Cómo llegar\"></h3>\n" +
     "        <p><strong>¡No utiliceis GPS!</strong> Os llevará por unos bonitos caminos de cabras :)</p>\n" +
     "        <p>L'Avellana se encuentra en el término municipal de Riudecols. Un vez llegados al semáforo que hay a la entrada del pueblo, girad a la derecha y seguid la señalización \"L'Avellana mas d'en Cabre\".</p>\n" +
     "    </div>\n" +
@@ -37919,7 +37921,7 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
     $stateProvider
         .state('home', {
             url: "/",
-            templateUrl: "views/home.html"
+            templateUrl: "/views/home.html"
         })
         .state('place', {
             url: "/como_llegar",
