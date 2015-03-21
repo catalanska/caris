@@ -37921,7 +37921,7 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
     $stateProvider
         .state('home', {
             url: "/",
-            templateUrl: "/views/home.html"
+            templateUrl: "views/home.html"
         })
         .state('place', {
             url: "/como_llegar",

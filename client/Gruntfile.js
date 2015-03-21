@@ -95,7 +95,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html2js');
 
     grunt.registerTask('emptyFile', 'Creates an empty file', function() {
-        grunt.file.write('js/views.js', 'angular.module("templates-main", []);');
+        //grunt.file.write('js/views.js', 'angular.module("templates-main", []);');
     });
 
 
