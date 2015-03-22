@@ -18,7 +18,7 @@ app.controller('photoCtrl',[ '$scope', 'Instagram', function($scope,Instagram){
     $scope.toggleShow = function(){
         Instagram.toggle($scope.slide).success(function() {
             $scope.slide.show = !$scope.slide.show;
-        });;
+        });
     };
 
 }]);

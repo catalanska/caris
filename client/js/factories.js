@@ -3,11 +3,11 @@ app.factory('Instagram', ['$http',
     function($http) {
         return {
             'get': function() {
-                var request = '/taggedPhotos';
+                var request = '/ig/taggedPhotos';
                 return $http.get(request);
             },
             'toggle': function(slide) {
-                var request = '/taggedPhotos/'+slide.id;
+                var request = '/ig/taggedPhotos/'+slide.id;
                 return $http.put(request, {show: !slide.show});
             }
         };
@@ -20,10 +20,15 @@ app.factory('GroupItems', [
             'new': function(data,itemsPerGroup) {
                 var i; var j = []; var res = [];
 
-                for (i = 0; i < data.length; i += 1) {
-                    if(j.length == itemsPerGroup ){ res.push(j); j = []; }
-                    j.push(data[i]);
+                if(data.length <= itemsPerGroup){
+                   res = data;
+                }else{
+                    for (i = 0; i < data.length; i += 1) {
+                        if(j.length == itemsPerGroup ){ res.push(j); j = []; }
+                        j.push(data[i]);
+                    }
                 }
+
                 return res;
             }
         };
