@@ -37923,11 +37923,11 @@ app.factory('Instagram', ['$http',
     function($http) {
         return {
             'get': function() {
-                var request = '/ig/taggedPhotos';
+                var request = '/taggedPhotos';
                 return $http.get(request);
             },
             'toggle': function(slide) {
-                var request = '/ig/taggedPhotos/'+slide.id;
+                var request = '/taggedPhotos/'+slide.id;
                 return $http.put(request, {show: !slide.show});
             }
         };
