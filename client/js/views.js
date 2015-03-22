@@ -471,7 +471,7 @@ angular.module("views/hotels.html", []).run(["$templateCache", function($templat
     "        <h2 class=\"text-center\">¿Dónde dormir? &nbsp;&nbsp;&nbsp;<img id=\"sleep\" src=\"images/final/dont_disturb.svg\" alt=\"Alojamiento\"></h2>\n" +
     "        <h3>Casa Soulere</h3>\n" +
     "        <p>Mansión de más de 400 años de antigüedad en Les Voltes de Riudecols. 22 plazas reservadas para los invitados a la boda. El precio es de 46€ por persona e incluye la opción de quedarse el Viernes por la noche, piscina y barbacoa.</p>\n" +
-    "        <p><a href=\"http://www.homeaway.es/p1003467\" target=\"_blank\" class =\"girls\">http://www.homeaway.es/p1003467</a></p>\n" +
+    "        <p><a href=\"http://www.voltes1602.com\" target=\"_blank\" class =\"girls\">http://www.voltes1602.com</a></p>\n" +
     "        <h3>Les Velles Escoles</h3>\n" +
     "        <p>Hotel rural en Les Irles de Riudecols. 33 plazas reservadas para los invitados a la boda. El precio es de 35€ por persona e incluye el desayuno.</p>\n" +
     "        <p> <a href=\"http://www.vellesescoles.com\" target=\"_blank\" class =\"girls\">http://www.vellesescoles.com</a></p>\n" +

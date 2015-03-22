@@ -12,28 +12,43 @@ global.mongoClient.connect(global.mongoUrl, function(err, db) {
     console.log("Connected correctly to server");
 });
 
-// To retieve list and return to client
-app.get('/taggedPhotos', function (req, res) {
-    igCollection.find({}).sort({created_time : -1}).toArray(function(err, docs) {
-        res.json(docs);
-    });
+// To retrieve list and return to client
+app.get('/ping', function (req, res) {
+        res.end('PONG');
 });
 
-// To confirm subscription
-app.get('/taggedPhotoSubscription', function (req, res) {
-    res.send(req.query['hub.challenge']);
-});
-
-// To receive updates from IG
-app.post('/taggedPhotoSubscription', function (req, res) {
-    var subscriptions = req.body;
-    for(idx in subscriptions){
-        getSubscription(subscriptions[idx].object_id, function(subscription){
-            getNewTaggedPhotos(subscription);
+app.route('/taggedPhotos')
+    .get(function (req, res) { // To retrieve list and return to client
+        igCollection.find({show: true}).sort({created_time: -1}).toArray(function (err, docs) {
+            res.json(docs);
         });
     }
-    res.json('OK');
-});
+);
+
+app.route('/taggedPhotos/:id')
+    .put(function (req, res) { // To update taggedPhoto
+        igCollection.update({id: req.params.id}, {$set: req.body}, function (err, result) {
+            if(err){ console.log(err);res.status(500); }
+            else res.status(200);
+            res.end();
+        });
+    }
+);
+
+app.route('/taggedPhotoSubscription')
+    .get(function (req, res) { // To confirm subscription
+        res.send(req.query['hub.challenge']);
+    })
+    .post(function (req, res) { // To receive updates from IG
+        var subscriptions = req.body;
+        for(idx in subscriptions){
+            getSubscription(subscriptions[idx].object_id, function(subscription){
+                getNewTaggedPhotos(subscription);
+            });
+        }
+        res.json('OK');
+    }
+);
 
 // Subscription creation & first import
 // curl -H "Content-Type: application/json" -d '{"tag":"esteryjavi"}' http://localhost:3000/createTaggedPhotoSubscription
@@ -69,6 +84,7 @@ var storeNewTaggedPhotos = function(subscription, photos, pagination){
 };
 
 var insertPhotoInDB = function(data){
+    data.show = true;
     igCollection.insert(data, function(err, result) {
             if(err) console.log("Error while insert "+err);
     });

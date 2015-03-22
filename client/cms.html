@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Ester y Javi | 27 Junio 2015 | CMS">
+        <meta name="author" content="Javier Jiménez Villarreal">
+        <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+        <title>Ester y Javi | 27 Junio 2015 | CMS</title>
+
+        <!-- build:css css/cms.min.css -->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- endbuild -->
+
+    </head>
+
+    <body ng-app="CarisCms">
+
+        <div class="container" data-ng-controller="cmsCtrl">
+            <div class="row" ng-repeat="group in photos">
+                <div class="col-xs-6 col-sm-3" ng-repeat="slide in group" data-ng-controller="photoCtrl">
+                    <div class="thumbnail">
+                        <img ng-src="{{ slide.images.low_resolution.url }}" src="" alt="">
+                        <div class="caption">
+                            <p>{{slide.caption.text | removeTags }}</p>
+                            <p>From: {{slide.caption.from.username}}</p>
+                            <p>Tags: {{slide.tags | join }}</p>
+                            <p ng-switch="slide.show">
+                                <a ng-switch-when="true" class="btn btn-danger" role="button" ng-click="toggleShow(slide);"><span class="glyphicon glyphicon-eye-close"></span> Hide</a>
+                                <a ng-switch-when="false" class="btn btn-primary" role="button" ng-click="toggleShow(slide);"><span class="glyphicon glyphicon-eye-open"></span> Show</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- build:js js/cmsbulk.js -->
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="js/filters.js"></script>
+        <script src="js/factories.js"></script>
+        <script src="js/cms.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>

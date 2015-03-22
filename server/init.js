@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // for parsing application/json
 
 
-var server = app.listen(3000, function () {
+var server = app.listen(3002, function () {
 
     var host = server.address().address;
     var port = server.address().port;
@@ -31,6 +31,7 @@ var mongoUrl = 'mongodb://localhost:27017/caris';
 
 exports.igClient = ig;
 exports.server = server;
+exports.express = express;
 exports.app = app;
 exports.mongoUrl = mongoUrl;
 exports.mongoClient = mongoClient;

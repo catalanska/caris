@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('ABC', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'templates-main', 'ngTouch']);
+var app = angular.module('CarisApp', ['ui.router', 'ngTouch', 'ui.bootstrap', 'CarisFactories', 'CarisDirectives', 'templates-main']);
 
 app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     //
@@ -54,83 +54,3 @@ app.controller('photosCtrl',[ '$rootScope','$scope', 'Carousel', function($rootS
 
     $scope.carousel = Carousel.create(displayMode);
 }]);
-
-
-app.factory('Carousel', ['Instagram',
-    function(Instagram) {
-        var groupSlides = function(data, slidesPerGroup){
-
-            var i, first = [], second;
-
-            for (i = 0; i < data.length; i += slidesPerGroup) {
-                second = {
-                    image1: data[i]
-                };
-                if (slidesPerGroup == 1) {}
-                if (data[i + 1] && (slidesPerGroup == 2 || slidesPerGroup == 3)) {
-                    second.image2 = data[i + 1];
-
-                }
-                if (data[i + (slidesPerGroup - 1)] && slidesPerGroup == 3) {
-                    second.image3 = data[i + 2];
-                }
-                first.push(second);
-            }
-            return first;
-        };
-
-        return {
-            'create': function(displayMode) {
-
-                var carousel = {
-                    interval: 7000,
-                    hashtag: "wedding",
-                    slidesGroups: []
-                };
-
-                switch(displayMode) {
-                    case 'desktop':
-                        carousel.width = "918px";
-                        carousel.slidesPerGroup = 3;
-                        break;
-                    case 'tablet':
-                        carousel.width = "612px";
-                        carousel.slidesPerGroup = 2;
-                        break;
-                    default:
-                        carousel.width = "303px";
-                        carousel.slidesPerGroup = 1;
-                }
-
-                Instagram.get().success(function(res) {
-                    carousel.slidesGroups = groupSlides(res, carousel.slidesPerGroup);
-                });
-
-                return carousel;
-            }
-        };
-
-    }
-]);
-
-app.factory('Instagram', ['$http',
-    function($http) {
-        return {
-            'get': function() {
-                var request = '/taggedPhotos';
-                return $http.get(request);
-            }
-        };
-    }
-]);
-
-app.directive('disableNgAnimate', ['$animate', function($animate) {
-    return {
-        restrict: 'A',
-        link: function(scope, element) {
-            $animate.enabled(false, element);
-        }
-    };
-}]);
-
-
