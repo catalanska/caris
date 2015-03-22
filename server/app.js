@@ -55,7 +55,7 @@ app.route('/taggedPhotoSubscription')
 app.post('/createTaggedPhotoSubscription', function (req, res) {
     var tag = req.body.tag;
     // Create subscription
-    igClient.add_tag_subscription(tag, 'http://52.11.10.218/api/taggedPhotoSubscription', [], function(err, result, remaining, limit){
+    igClient.add_tag_subscription(tag, 'http://www.esteryjaviycomieronperdices.es/taggedPhotoSubscription', [], function(err, result, remaining, limit){
         if(err) console.log("Error creting subscription: "+err);
         initSubscription(tag,function(subscription){
             console.log(subscription);
