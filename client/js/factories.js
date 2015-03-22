@@ -21,7 +21,8 @@ app.factory('GroupItems', [
                 var i; var j = []; var res = [];
 
                 if(data.length <= itemsPerGroup){
-                   res = data;
+                   console.log(data);
+                    res.push(data);
                 }else{
                     for (i = 0; i < data.length; i += 1) {
                         if(j.length == itemsPerGroup ){ res.push(j); j = []; }
