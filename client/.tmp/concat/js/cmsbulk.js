@@ -30410,6 +30410,10 @@ app.factory('Instagram', ['$http',
     function($http) {
         return {
             'get': function() {
+                var request = '/selectedPhotos';
+                return $http.get(request);
+            },
+            'getAll': function() {
                 var request = '/taggedPhotos';
                 return $http.get(request);
             },
@@ -30487,7 +30491,7 @@ app.controller('cmsCtrl',[ '$rootScope','$scope', 'Instagram', 'GroupItems', fun
     console.log('in controller');
     $scope.photos = [];
 
-    Instagram.get().success(function(res) {
+    Instagram.getAll().success(function(res) {
         $scope.photos = GroupItems.new(res, 4);
     });
 
