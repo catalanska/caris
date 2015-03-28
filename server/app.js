@@ -27,7 +27,7 @@ app.route('/selectedPhotos')
 
 app.route('/taggedPhotos')
     .get(function (req, res) { // To retrieve list and return to client
-        igCollection.find().sort({created_time: -1}).toArray(function (err, docs) {
+        igCollection.find({}).sort({created_time: -1}).toArray(function (err, docs) {
             res.json(docs);
         });
     }
