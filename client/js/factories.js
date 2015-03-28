@@ -3,6 +3,10 @@ app.factory('Instagram', ['$http',
     function($http) {
         return {
             'get': function() {
+                var request = '/selectedPhotos';
+                return $http.get(request);
+            },
+            'getAll': function() {
                 var request = '/taggedPhotos';
                 return $http.get(request);
             },

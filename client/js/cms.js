@@ -7,7 +7,7 @@ app.controller('cmsCtrl',[ '$rootScope','$scope', 'Instagram', 'GroupItems', fun
     console.log('in controller');
     $scope.photos = [];
 
-    Instagram.get().success(function(res) {
+    Instagram.getAll().success(function(res) {
         $scope.photos = GroupItems.new(res, 4);
     });
 

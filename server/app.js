@@ -17,9 +17,17 @@ app.get('/ping', function (req, res) {
         res.end('PONG');
 });
 
-app.route('/taggedPhotos')
+app.route('/selectedPhotos')
     .get(function (req, res) { // To retrieve list and return to client
         igCollection.find({show: true}).sort({created_time: -1}).toArray(function (err, docs) {
+            res.json(docs);
+        });
+    }
+);
+
+app.route('/taggedPhotos')
+    .get(function (req, res) { // To retrieve list and return to client
+        igCollection.find().sort({created_time: -1}).toArray(function (err, docs) {
             res.json(docs);
         });
     }
