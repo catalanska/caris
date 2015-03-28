@@ -37384,7 +37384,7 @@ angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCac
     "");
 }]);
 
-angular.module('templates-main', ['views/history.html', 'views/home.html', 'views/hotels.html', 'views/photos.html', 'views/place.html', 'views/trip.html']);
+angular.module('templates-main', ['views/history.html', 'views/home.html', 'views/hotels.html', 'views/photos.html', 'views/place.html', 'views/trip.html', 'views/trip/bali.html', 'views/trip/cameron.html', 'views/trip/kuala.html', 'views/trip/malaysia.html', 'views/trip/overview.html', 'views/trip/penang.html', 'views/trip/perhentian.html', 'views/trip/singapore.html']);
 
 angular.module("views/history.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("views/history.html",
@@ -37923,6 +37923,107 @@ angular.module("views/trip.html", []).run(["$templateCache", function($templateC
     "        <a id=\"prev-stage\" ng-if=\"showPrev\" ng-click=\"goToPrevStage()\" title=\"Anterior\"><span class=\"glyphicon glyphicon-menu-left\"></span></a>\n" +
     "        <div ui-view></div>\n" +
     "        <a id=\"next-stage\" ng-if=\"showNext\" ng-click=\"goToNextStage()\" title=\"Siguiente\"><span class=\"glyphicon glyphicon-menu-right\"></span> </a>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("views/trip/bali.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip/bali.html",
+    "<div class=\"thumbnail\">\n" +
+    "    <img src=\"images/final/bali.jpg\" alt=\"Bali\" width=\"100%\"/>\n" +
+    "    <div class=\"caption\">\n" +
+    "        <h3>Bali</h3>\n" +
+    "        <p>A continuación pasaremos 4 días en Bali, \"la sonrisa de Asia\". Nos morimos de gana de mezclarnos entre sus gentes, perdernos por sus templos y playas ... ¡y disfrutar de su comida!</p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("views/trip/cameron.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip/cameron.html",
+    "<div class=\"thumbnail\">\n" +
+    "    <img src=\"images/final/cameron.jpg\" alt=\"Cameron Highlands\" width=\"100%\"/>\n" +
+    "    <div class=\"caption\">\n" +
+    "        <h3>Cameron Highlands</h3>\n" +
+    "        <p>Ya en Malasia visitaremos Cameron Highlands, una clara muestra del pasado británico de la isla. Recorreremos sus plantaciones de té, de fresas y flores, sus montañas ... y escaparemos unos días del calor :)</p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("views/trip/kuala.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip/kuala.html",
+    "<div class=\"thumbnail\">\n" +
+    "    <img src=\"images/final/kuala.jpg\" alt=\"Kuala Lumpur\" width=\"100%\"/>\n" +
+    "    <div class=\"caption\">\n" +
+    "        <h3>Kuala Lumpur</h3>\n" +
+    "        <p>Antes de coger el avión de regreso, nos quedamos un día en Kuala Lumpur para visitar la capital de Malasia y su famoso templo en las cuevas Batu.</p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("views/trip/malaysia.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip/malaysia.html",
+    "<div ui-view></div>\n" +
+    "\n" +
+    "<div class=\"col-md-3\">\n" +
+    "    <a ui-sref=\"trip.malaysia\">Singapur</a>\n" +
+    "</div>\n" +
+    "<div class=\"col-md-6 col-md-offset-3\">\n" +
+    "    foto bali\n" +
+    "</div>\n" +
+    "<div class=\"col-md-3\">\n" +
+    "    <a ui-sref=\"trip.malaysia\">Malaysia</a>\n" +
+    "</div>\n" +
+    "\n" +
+    "");
+}]);
+
+angular.module("views/trip/overview.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip/overview.html",
+    "<div class=\"thumbnail\">\n" +
+    "    <img src=\"images/final/map.jpeg\" alt=\"Ruta\" width=\"100%\"/>\n" +
+    "    <div class=\"caption\">\n" +
+    "        <h3>Singapur, Bali y Malasia</h3>\n" +
+    "        <p>3 países, 7 aviones, un coche, una moto, algún barco ... ¡Está claro que somos de los que buscan sólo relax! Templos budistas e hindúes, playas espectaculares, campos de té y de arroz, snorkel, submarinismo ... ¡qué ganas!</p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("views/trip/penang.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip/penang.html",
+    "<div class=\"thumbnail\">\n" +
+    "    <img src=\"images/final/penang.jpg\" alt=\"Penang\" width=\"100%\"/>\n" +
+    "    <div class=\"caption\">\n" +
+    "        <h3>Penang</h3>\n" +
+    "        <p>LLegamos a Penang, declarada Patrimonio de la Humanidad por la Unesco debido a la increible mezcla entre su rico pasado colonial y su presente multicultural. Allí podremos ver casas coloniales, templos budistas, mezquitas, iglesias cristianas, un cementerio judío, templos taoístas o hinduistas … Y por si fuese poco, Penang es famosa por su arte callejero y su comida </p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("views/trip/perhentian.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip/perhentian.html",
+    "<div class=\"thumbnail\">\n" +
+    "    <img src=\"images/final/perhentian.jpg\" alt=\"Perhentian\" width=\"100%\"/>\n" +
+    "    <div class=\"caption\">\n" +
+    "        <h3>Perhentian</h3>\n" +
+    "        <p>Para acabar, pasaremos unos días en el paraíso de las islas Perhentian. Intentaremos cumplir el sueño de Ester de nadar entre tortugas.</p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("views/trip/singapore.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip/singapore.html",
+    "<div class=\"thumbnail\">\n" +
+    "    <img src=\"images/final/singapore.jpg\" alt=\"Singapur\" width=\"100%\"/>\n" +
+    "    <div class=\"caption\">\n" +
+    "        <h3>Singapur</h3>\n" +
+    "        <p>Empezaremos por la ciudad más cosmopolita y moderna de Asia. Aquí pretendemos descansar del viaje y empezar a acostumbrarnos de manera suave a las nuevas culturas.</p>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");

@@ -73,7 +73,7 @@ module.exports = function (grunt) {
                 base: '../client/'
             },
             main: {
-              src: ['views/*.html'],
+              src: ['views/**/*.html'],
               dest: 'js/views.js'
             }
         },
@@ -95,7 +95,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html2js');
 
     grunt.registerTask('emptyFile', 'Creates an empty file', function() {
-        //grunt.file.write('js/views.js', 'angular.module("templates-main", []);');
+        grunt.file.write('js/views.js', 'angular.module("templates-main", []);');
     });
 
 
