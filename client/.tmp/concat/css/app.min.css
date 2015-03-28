@@ -441,6 +441,9 @@ h3{font-family: 'Nunito'; font-size: 2em; color: rgba(72,74,76,0.7);}
 #navbar-header-list li a { color: rgb(99,199,165); }
 #navbar-header-list li.active > a { background-color: rgba(99,199,165,0.7); color: rgb(255,173,106); text-shadow: 3px 3px 8px #ffffff; }
 
+/* Place */
+#avellana-map { margin-top: 2em; }
+
 /* Trip */
 
 #prev-stage, #next-stage{ position: absolute; top: 40%; cursor: pointer; font-size: 2.3em; color: rgb(255,173,106); }
