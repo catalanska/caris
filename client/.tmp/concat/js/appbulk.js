@@ -37883,7 +37883,14 @@ angular.module("views/photos.html", []).run(["$templateCache", function($templat
     "            <carousel disable-ng-animate interval=\"carousel.interval\">\n" +
     "                <slide ng-repeat=\"group in carousel.slidesGroups\" active=\"slide.active\" style=\"clear: both;\">\n" +
     "                    <div  style=\"float:left\" ng-repeat=\"slide in group\">\n" +
-    "                        <img ng-src=\"{{ slide.images.low_resolution.url }}\" src=\"\" alt=\"\">\n" +
+    "                        <div class=\"thumbnail\">\n" +
+    "                            <img ng-src=\"{{ slide.images.low_resolution.url }}\" src=\"\" alt=\"\">\n" +
+    "                            <div class=\"caption\">\n" +
+    "                                <p>{{slide.caption.text}}</p>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
     "                    </div>\n" +
     "                </slide>\n" +
     "            </carousel>\n" +
@@ -38044,7 +38051,7 @@ app.factory('Instagram', ['$http',
     function($http) {
         return {
             'get': function() {
-                var request = '/selectedPhotos';
+                var request = '/ig/selectedPhotos';
                 return $http.get(request);
             },
             'getAll': function() {
@@ -38087,18 +38094,18 @@ app.factory('Carousel', ['Instagram', 'GroupItems',
             'create': function(displayMode) {
 
                 var carousel = {
-                    interval: 7000,
+                    interval: -7000,
                     hashtag: "wedding",
                     slidesGroups: []
                 };
 
                 switch(displayMode) {
                     case 'desktop':
-                        carousel.width = "918px";
+                        carousel.width = "925px";
                         carousel.slidesPerGroup = 3;
                         break;
                     case 'tablet':
-                        carousel.width = "612px";
+                        carousel.width = "620px";
                         carousel.slidesPerGroup = 2;
                         break;
                     default:
@@ -38207,9 +38214,6 @@ app.controller('photosCtrl',[ '$scope', 'Carousel', function($scope,Carousel){
 }]);
 
 app.controller('tripCtrl',[ '$scope', '$state', function($scope, $state){
-    console.log('current');
-    console.log($state.current);
-
 
     $scope.goToPrevStage = function(){
         $state.go($scope.prevStage);

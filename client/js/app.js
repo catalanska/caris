@@ -89,9 +89,6 @@ app.controller('photosCtrl',[ '$scope', 'Carousel', function($scope,Carousel){
 }]);
 
 app.controller('tripCtrl',[ '$scope', '$state', function($scope, $state){
-    console.log('current');
-    console.log($state.current);
-
 
     $scope.goToPrevStage = function(){
         $state.go($scope.prevStage);

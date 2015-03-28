@@ -30410,7 +30410,7 @@ app.factory('Instagram', ['$http',
     function($http) {
         return {
             'get': function() {
-                var request = '/selectedPhotos';
+                var request = '/ig/selectedPhotos';
                 return $http.get(request);
             },
             'getAll': function() {
@@ -30453,18 +30453,18 @@ app.factory('Carousel', ['Instagram', 'GroupItems',
             'create': function(displayMode) {
 
                 var carousel = {
-                    interval: 7000,
+                    interval: -7000,
                     hashtag: "wedding",
                     slidesGroups: []
                 };
 
                 switch(displayMode) {
                     case 'desktop':
-                        carousel.width = "918px";
+                        carousel.width = "925px";
                         carousel.slidesPerGroup = 3;
                         break;
                     case 'tablet':
-                        carousel.width = "612px";
+                        carousel.width = "620px";
                         carousel.slidesPerGroup = 2;
                         break;
                     default:

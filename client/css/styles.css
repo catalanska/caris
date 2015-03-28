@@ -71,15 +71,18 @@ h3{font-family: 'Nunito'; font-size: 2em; color: rgba(72,74,76,0.7);}
 #prev-stage{ left:-40px; }
 #next-stage{ right:-40px; }
 
+/* Photos */
+.carousel-indicators{ display:none; }
+.carousel .caption { width: 306px; overflow: hidden; }
+.carousel .thumbnail { border:none; padding: 0; margin: 0; }
 .caption { text-align: center; }
 .caption h3 { text-align: center; }
-
+.thumbnail { border: 2px solid rgb(99,199,165); }
+.thumbnail img { border: 1px solid rgba(72, 74, 76, 0.7); }
 
 /* Bootstrap */
 .glyphicon.black { color:rgba(70,72,74,0.9); }
-.carousel-indicators{ display:none; }
-.thumbnail { border: 2px solid rgb(99,199,165); }
-.thumbnail img { border: 1px solid rgba(72, 74, 76, 0.7); }
+
 
 /* Animations */
 
