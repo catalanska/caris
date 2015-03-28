@@ -30410,7 +30410,7 @@ app.factory('Instagram', ['$http',
     function($http) {
         return {
             'get': function() {
-                var request = '/ig/selectedPhotos';
+                var request = '/selectedPhotos';
                 return $http.get(request);
             },
             'getAll': function() {
