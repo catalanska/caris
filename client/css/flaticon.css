@@ -119,3 +119,27 @@
 .flaticon-web40:before {
     content: "\e022";
 }
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after, .glyphicon {
+    margin-left: 0px;
+    font-size: 1.8em;
+}
+
+[class^="flaticon-"].medium:before,
+[class*=" flaticon-"].medium:before,
+[class^="flaticon-"].medium:after,
+[class*=" flaticon-"].medium:after{
+    font-size: 2em;
+}
+
+[class^="flaticon-"].red{
+    color:#f25761;
+}
+[class^="flaticon-"].orange{
+    color:#F9A741;
+}
+[class^="flaticon-"].green{
+    color:#27ae60;
+}
+[class^="flaticon-"].black{
+    color:rgba(70,72,74,0.9);
+}

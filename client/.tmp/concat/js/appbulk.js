@@ -37384,7 +37384,7 @@ angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCac
     "");
 }]);
 
-angular.module('templates-main', ['views/history.html', 'views/home.html', 'views/hotels.html', 'views/photos.html', 'views/place.html']);
+angular.module('templates-main', ['views/history.html', 'views/home.html', 'views/hotels.html', 'views/photos.html', 'views/place.html', 'views/trip.html']);
 
 angular.module("views/history.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("views/history.html",
@@ -37872,7 +37872,7 @@ angular.module("views/photos.html", []).run(["$templateCache", function($templat
   $templateCache.put("views/photos.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-12 text-center\">\n" +
-    "        <h2>¡Compartid las fotos de esta aventura!</h2>\n" +
+    "        <h2>¡Compartid con nosotros esta aventura!</h2>\n" +
     "        <p class=\"main-content\">\n" +
     "            <h3>Subidlas a Instagram con el hashtag</h3><br>\n" +
     "            <a><img id=\"instagram-icon\" src=\"images/final/instagram.svg\"> &nbsp;<span class=\"girls big\">#esteryjavi</span></a>\n" +
@@ -37897,12 +37897,32 @@ angular.module("views/place.html", []).run(["$templateCache", function($template
   $templateCache.put("views/place.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-6 col-md-offset-3\">\n" +
-    "        <h2 class=\"text-center\">¿Cómo llegar? &nbsp;<img id=\"sign\" src=\"images/final/sign.svg\" alt=\"Cómo llegar\"></h2>\n" +
+    "        <h2 class=\"text-center\">¿Cómo llegar?</h2>\n" +
     "        <h3><img id=\"bus\" src=\"images/final/bus.svg\" alt=\"Cómo llegar\">&nbsp;&nbsp;En Autocar</h3>\n" +
     "        <p>Un autocar saldrá desde Viladecans y Gavà. Más información en breve.</p>\n" +
     "        <h3>En coche&nbsp;&nbsp;<img id=\"car\" src=\"images/final/car.svg\" alt=\"Cómo llegar\"></h3>\n" +
     "        <p><strong>¡No utiliceis GPS!</strong> Os llevará por unos bonitos caminos de cabras :)</p>\n" +
     "        <p>L'Avellana se encuentra en el término municipal de Riudecols. Un vez llegados al semáforo que hay a la entrada del pueblo, girad a la derecha y seguid la señalización \"L'Avellana mas d'en Cabre\".</p>\n" +
+    "        <p><img id=\"avellana-map\" src=\"images/final/avellana_mapa.png\" alt=\"Cómo llegar\" width=\"100%\"></p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("views/trip.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("views/trip.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-6 col-md-offset-3\">\n" +
+    "        <h2 class=\"text-center\">Viaje</h2>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3\">\n" +
+    "        <a id=\"prev-stage\" ng-if=\"showPrev\" ng-click=\"goToPrevStage()\" title=\"Anterior\"><span class=\"glyphicon glyphicon-menu-left\"></span></a>\n" +
+    "        <div ui-view></div>\n" +
+    "        <a id=\"next-stage\" ng-if=\"showNext\" ng-click=\"goToNextStage()\" title=\"Siguiente\"><span class=\"glyphicon glyphicon-menu-right\"></span> </a>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -38022,6 +38042,39 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
         .state('history', {
             url: "/historia",
             templateUrl: "views/history.html"
+        })
+        .state('trip', {
+            url: "/viaje",
+            templateUrl: "views/trip.html",
+            controller: "tripCtrl"
+        })
+        .state('trip.overview', {
+            url: "/resumen",
+            templateUrl: "views/trip/overview.html"
+        })
+        .state('trip.singapore', {
+            url: "/singapur",
+            templateUrl: "views/trip/singapore.html"
+        })
+        .state('trip.bali', {
+            url: "/bali",
+            templateUrl: "views/trip/bali.html"
+        })
+        .state('trip.cameron', {
+            url: "/cameron_highlands",
+            templateUrl: "views/trip/cameron.html"
+        })
+        .state('trip.penang', {
+            url: "/penang",
+            templateUrl: "views/trip/penang.html"
+        })
+        .state('trip.perhentian', {
+            url: "/perhentian",
+            templateUrl: "views/trip/perhentian.html"
+        })
+        .state('trip.kuala', {
+            url: "/kuala_lumpur",
+            templateUrl: "views/trip/kuala.html"
         });
 }]);
 
@@ -38038,7 +38091,7 @@ app.run(['$rootScope', function($rootScope){
 }]);
 
 
-app.controller('photosCtrl',[ '$rootScope','$scope', 'Carousel', function($rootScope,$scope,Carousel){
+app.controller('photosCtrl',[ '$scope', 'Carousel', function($scope,Carousel){
     var width = window.innerWidth;
     var displayMode;
     if(width >= 750 && width < 1024) displayMode = 'tablet';
@@ -38046,4 +38099,55 @@ app.controller('photosCtrl',[ '$rootScope','$scope', 'Carousel', function($rootS
     else displayMode = 'desktop';
 
     $scope.carousel = Carousel.create(displayMode);
+}]);
+
+app.controller('tripCtrl',[ '$scope', '$state', function($scope, $state){
+    console.log('current');
+    console.log($state.current);
+
+
+    $scope.goToPrevStage = function(){
+        $state.go($scope.prevStage);
+    };
+
+    $scope.goToNextStage = function(){
+        $state.go($scope.nextStage);
+    };
+
+    $scope.initStagesContext = function(){
+        var context = getStagesContext();
+        console.log(context);
+        $scope.prevStage = context.prev;
+        $scope.nextStage = context.next;
+        $scope.showPrev = !(context.prev == null);
+        $scope.showNext = !(context.next == null);
+    };
+
+
+    $scope.$on('$stateChangeSuccess', function(){
+        if($state.current.name == 'trip'){$state.go('trip.overview');}
+        else $scope.initStagesContext();
+    });
+
+        function getStagesContext(){
+        switch($state.current.name) {
+            case 'trip.overview':
+                return { prev: null, next: 'trip.singapore'};
+            case 'trip.singapore':
+                return { prev: 'trip.overview', next: 'trip.bali'};
+            case 'trip.bali':
+                return { prev: 'trip.singapore', next: 'trip.cameron'};
+            case 'trip.cameron':
+                return { prev: 'trip.bali', next: 'trip.penang'};
+            case 'trip.penang':
+                return { prev: 'trip.cameron', next: 'trip.perhentian'};
+            case 'trip.perhentian':
+                return { prev: 'trip.penang', next: 'trip.kuala'};
+            case 'trip.kuala':
+                return { prev: 'trip.perhentian', next: null};
+            default:
+                return null;
+        }
+    }
+
 }]);

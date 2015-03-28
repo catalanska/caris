@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h2 class="text-center">Viaje</h2>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+        <a id="prev-stage" ng-if="showPrev" ng-click="goToPrevStage()" title="Anterior"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <div ui-view></div>
+        <a id="next-stage" ng-if="showNext" ng-click="goToNextStage()" title="Siguiente"><span class="glyphicon glyphicon-menu-right"></span> </a>
+    </div>
+</div>
