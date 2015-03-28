@@ -37934,7 +37934,7 @@ angular.module("views/trip/bali.html", []).run(["$templateCache", function($temp
     "    <img src=\"images/final/bali.jpg\" alt=\"Bali\" width=\"100%\"/>\n" +
     "    <div class=\"caption\">\n" +
     "        <h3>Bali</h3>\n" +
-    "        <p>A continuación pasaremos 4 días en Bali, \"la sonrisa de Asia\". Nos morimos de gana de mezclarnos entre sus gentes, perdernos por sus templos y playas ... ¡y disfrutar de su comida!</p>\n" +
+    "        <p>A continuación pasaremos 5 días en Bali, \"la sonrisa de Asia\". Nos morimos de gana de mezclarnos entre sus gentes, perdernos por sus templos y playas ... ¡y disfrutar de su comida!</p>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
