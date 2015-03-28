@@ -25,9 +25,10 @@ h3{font-family: 'Nunito'; font-size: 2em; color: rgba(72,74,76,0.7);}
 .girls, .caption h3{font-family: 'Crafty Girls';color: rgba(72,74,76,0.7);}
 .girls.big{font-size: 2em;}
 
-.main-content{margin: 4em 0;}
+.main-content { margin: 4em 0; }
 #container-wrapper { padding-bottom: 2em; }
-#frame-row{ margin: 0px 0px 1em; }
+#frame-row { margin: 0px 0px 1em; }
+#ie-warning { display: none; }
 
 #icon-instagram-down { color: rgb(255, 173, 106); font-size: 3em;}
 #sign { width: 90px }

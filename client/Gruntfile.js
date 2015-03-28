@@ -21,7 +21,7 @@ module.exports = function (grunt) {
             },
             images : {
                 expand: true,
-                src: ['images/final/**'],
+                src: ['images/favicon/**', 'images/final/**'],
                 dest: 'dist/'
             },
             fonts : {
