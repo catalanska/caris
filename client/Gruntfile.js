@@ -19,6 +19,11 @@ module.exports = function (grunt) {
                 src: ['*.html'],
                 dest: 'dist/'
             },
+            css: {
+                expand: true,
+                src: ['css/ie_warning.css'],
+                dest: 'dist/'
+            },
             images : {
                 expand: true,
                 src: ['images/favicon/**', 'images/final/**'],
