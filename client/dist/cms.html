@@ -10,15 +10,22 @@
 
         <title>Ester y Javi | 27 Junio 2015 | CMS</title>
 
-        <link rel="stylesheet" href="css/bd89e822.cms.min.css"/>
+        <link rel="stylesheet" href="css/172bff1c.cms.min.css"/>
 
     </head>
 
-    <body ng-app="CarisCms">
-
-        <div class="container" data-ng-controller="cmsCtrl">
+    <body ng-app="CarisCms" data-ng-controller="cmsCtrl">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="btn-group" role="group" aria-label="...">
+                <a class="btn btn-default navbar-btn" ng-click="updateCollection()"><span class="glyphicon glyphicon-refresh"></span>&nbsp;Refresh</a>
+                <a class="btn btn-default navbar-btn" href="/#/fotos"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;Go to Site</a>
+            </div>
+        </div>
+    </nav>
+        <div class="container">
             <div class="row" ng-repeat="group in photos">
-                <div class="col-xs-6 col-sm-3" ng-repeat="slide in group" data-ng-controller="photoCtrl">
+                <div class="col-xs-6 col-sm-3" ng-repeat="slide in group" data-ng-controller="photoCtrl" ng-if="!slide.deleted" >
                     <div class="thumbnail">
                         <img ng-src="{{ slide.images.low_resolution.url }}" src="" alt="">
                         <div class="caption">
@@ -26,8 +33,9 @@
                             <p>From: {{slide.caption.from.username}}</p>
                             <p>Tags: {{slide.tags | join }}</p>
                             <p ng-switch="slide.show">
-                                <a ng-switch-when="true" class="btn btn-danger" role="button" ng-click="toggleShow(slide);"><span class="glyphicon glyphicon-eye-close"></span> Hide</a>
+                                <a ng-switch-when="true" class="btn btn-warning" role="button" ng-click="toggleShow(slide);"><span class="glyphicon glyphicon-eye-close"></span> Hide</a>
                                 <a ng-switch-when="false" class="btn btn-primary" role="button" ng-click="toggleShow(slide);"><span class="glyphicon glyphicon-eye-open"></span> Show</a>
+                                <a class="btn btn-danger" role="button" ng-click="deletePhoto(slide);"><span class="glyphicon glyphicon-trash"></span> Delete photo</a>
                             </p>
                         </div>
                     </div>
@@ -35,6 +43,6 @@
             </div>
         </div>
 
-        <script src="js/29e00974.cmsbulk.js"></script>
+        <script src="js/17886824.cmsbulk.js"></script>
     </body>
 </html>

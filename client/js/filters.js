@@ -7,7 +7,7 @@ angular.module('captionFilters', [])
     })
     .filter('join', function() {
         return function(tags) {
-            return tags.join(', ');
+            if(tags) return tags.join(', ');
         };
     });
 

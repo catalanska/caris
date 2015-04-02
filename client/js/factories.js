@@ -7,12 +7,21 @@ app.factory('Instagram', ['$http',
                 return $http.get(request);
             },
             'getAll': function() {
-                var request = '/taggedPhotos';
+                var request = '/taggedPhotos?reqType=get';
+                return $http.get(request);
+            },
+            'update': function() {
+                console.log('update');
+                var request = '/taggedPhotos?reqType=refresh';
                 return $http.get(request);
             },
             'toggle': function(slide) {
                 var request = '/taggedPhotos/'+slide.id;
                 return $http.put(request, {show: !slide.show});
+            },
+            'deletePhoto': function(slide) {
+                var request = '/taggedPhotos/'+slide.id;
+                return $http.delete(request);
             }
         };
     }

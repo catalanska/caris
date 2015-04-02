@@ -11,6 +11,12 @@ app.controller('cmsCtrl',[ '$rootScope','$scope', 'Instagram', 'GroupItems', fun
         $scope.photos = GroupItems.new(res, 4);
     });
 
+    $scope.updateCollection = function(){
+        Instagram.update().success(function(res) {
+                $scope.photos = GroupItems.new(res, 4);
+        });
+    };
+
 }]);
 
 app.controller('photoCtrl',[ '$scope', 'Instagram', function($scope,Instagram){
@@ -19,6 +25,14 @@ app.controller('photoCtrl',[ '$scope', 'Instagram', function($scope,Instagram){
         Instagram.toggle($scope.slide).success(function() {
             $scope.slide.show = !$scope.slide.show;
         });
+    };
+
+    $scope.deletePhoto = function(){
+        if (confirm("Are you completely sure you want to delete this photo?") == true) {
+            Instagram.deletePhoto($scope.slide).success(function() {
+                $scope.slide.deleted = true;
+            });
+        }
     };
 
 }]);
