@@ -60,8 +60,7 @@ app.route('/taggedPhotos/:id')
     });
 
 app.route('/taggedPhotoSubscription')
-    // To confirm subscription
-    .get(function (req, res) {
+    .get(function (req, res) { // To confirm subscription
         res.send(req.query['hub.challenge']);
     })
     .post(function (req, res) { // To receive updates from IG
@@ -170,10 +169,12 @@ var updateAllSubscriptions = function(callback){
 var updateSubscriptions = function(subscriptions){
     for(idx in subscriptions){
         getSubscription(subscriptions[idx].object_id, function(subscription){
-            cconsole.log('>>> Updating subscription: '+subscription.tag);
-            getNewTaggedPhotos(subscription, function(res){
-                console.log('>>> Subscription: '+res.tag+'; '+res.newInserts+' new photos properly inserted');
-            });
+            if(subscription){
+                console.log('>>> Updating subscription: '+subscription.tag);
+                getNewTaggedPhotos(subscription, function(res){
+                    console.log('>>> Subscription: '+res.tag+'; '+res.newInserts+' new photos properly inserted');
+                });
+            }
         });
     }
 };
