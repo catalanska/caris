@@ -66,6 +66,8 @@ app.route('/taggedPhotoSubscription')
     })
     .post(function (req, res) { // To receive updates from IG
         var subscriptions = req.body;
+        console.log('>>> Update from Instagram API');
+        console.log(req.body);
         updateSubscriptions(subscriptions);
         res.json('OK');
     }
