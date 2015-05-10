@@ -37855,13 +37855,15 @@ angular.module("views/hotels.html", []).run(["$templateCache", function($templat
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-6 col-md-offset-3\">\n" +
     "        <h2 class=\"text-center\">¿Dónde dormir? &nbsp;&nbsp;&nbsp;<img id=\"sleep\" src=\"images/final/dont_disturb.svg\" alt=\"Alojamiento\"></h2>\n" +
+    "        <p><small>Hemos reservado dos casas muy cerquita del lugar de la boda para los amigos que nos habéis ido confirmando. </small></p>\n" +
+    "        <p><small>En la medida de lo posible intentaremos no separar a nadie, así que nos encargaremos nosotros de la distribución en las casas.</small></p>\n" +
+    "        <p><small>Los precios de las casas varian muy poquito. Aún así, dado que nosotros indicaremos en qué casa duerme cada uno, creemos que es más justo que todo el mundo pague lo mismo. Así que hemos fijado el precio final en 42€ por persona.</small></p>\n" +
     "        <h3>Casa Soulere</h3>\n" +
-    "        <p>Mansión de más de 400 años de antigüedad en Les Voltes de Riudecols. 22 plazas reservadas para los invitados a la boda. El precio es de 46€ por persona e incluye la opción de quedarse el Viernes por la noche, piscina y barbacoa.</p>\n" +
-    "        <p><a href=\"http://www.voltes1602.com\" target=\"_blank\" class =\"girls\">http://www.voltes1602.com</a></p>\n" +
+    "        <p>Mansión de más de 400 años de antigüedad en Les Voltes de Riudecols. 22 plazas. Incluye la opción de quedarse el Viernes por la noche y el desayuno del Domingo a cargo de los novios :) <br> Aquí nos juntaremos los de ambas casas el Domingo para disfrutar de la piscina y rematar con una barbacoa.</p>\n" +
+    "        <p><a href=\"http://www.voltes1602.com\" target=\"_blank\" class=\"girls\">http://www.voltes1602.com</a></p>\n" +
     "        <h3>Les Velles Escoles</h3>\n" +
-    "        <p>Hotel rural en Les Irles de Riudecols. 33 plazas reservadas para los invitados a la boda. El precio es de 35€ por persona e incluye el desayuno.</p>\n" +
-    "        <p> <a href=\"http://www.vellesescoles.com\" target=\"_blank\" class =\"girls\">http://www.vellesescoles.com</a></p>\n" +
-    "\n" +
+    "        <p>Hotel rural en Les Irles de Riudecols. 33 plazas. Incluye el desayuno.</p>\n" +
+    "        <p> <a href=\"http://www.vellesescoles.com\" target=\"_blank\" class=\"girls\">http://www.vellesescoles.com</a></p>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
