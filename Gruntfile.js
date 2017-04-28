@@ -75,7 +75,7 @@ module.exports = function (grunt) {
 
         html2js: {
             options: {
-                base: '../client/'
+                base: './'
             },
             main: {
               src: ['views/**/*.html'],
@@ -120,4 +120,3 @@ module.exports = function (grunt) {
 
 
 };
-
